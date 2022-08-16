@@ -64,10 +64,10 @@ describe('backend-express-template routes', () => {
   });
 
   it('GET /api/v1/users returns a list of users if authorized', async () => {
-    const [agent, user] = await registerAndLogin({
+    const [agent] = await registerAndLogin({
       email: 'admin@example.com',
     });
-    console.log(user);
+
     const res = await agent.get('/api/v1/users');
 
     expect(res.body.length).toEqual(3);
@@ -91,6 +91,12 @@ describe('backend-express-template routes', () => {
       ]
     `);
     expect(res.status).toBe(200);
+  });
+
+  it(' GET /api/v1/restaurants should return a list of restaurants', async () => {
+    const res = await request(app).get('/api/v1/restaurants');
+    expect(res.status).toBe(200);
+    expect(res.body.length).toEqual(4);
   });
   afterAll(() => {
     pool.end();
