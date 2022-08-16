@@ -98,6 +98,28 @@ describe('backend-express-template routes', () => {
     expect(res.status).toBe(200);
     expect(res.body.length).toEqual(4);
   });
+
+  it('GET /api/v1/restaurants/:restId shows restaurant detail with nested reviews', async () => {
+    const res = await request(app).get('/api/v1/restaurants/1');
+    expect(res.body).toEqual({
+      id: '1',
+      name: 'Luc Lac',
+      reviews: [
+        {
+          id: '1',
+          user_id: '1',
+          restaurant_id: '1',
+          post: 'Amazing place to get a drink and vibe with friends',
+        },
+        {
+          id: '3',
+          user_id: '2',
+          restaurant_id: '1',
+          post: 'Best pho in town!',
+        },
+      ],
+    });
+  });
   afterAll(() => {
     pool.end();
   });
