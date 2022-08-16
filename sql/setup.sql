@@ -12,6 +12,6 @@ CREATE TABLE yawp_users (
 
 INSERT INTO yawp_users (user_name, email, password_hash) VALUES
 ('cutie123', 'test@cutie.com', '123456'),
-('rex123', 'test@rex.com', 'get1234' );
+('rex123', 'test@rex2.com', 'get1234' );
 
 
