@@ -10,4 +10,8 @@ CREATE TABLE yawp_users (
     password_hash VARCHAR NOT NULL
 );
 
+INSERT INTO yawp_users (user_name, email, password_hash) VALUES
+('cutie123', 'test@cutie.com', '123456'),
+('rex123', 'test@rex.com', 'get1234' );
+
 

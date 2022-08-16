@@ -26,6 +26,13 @@ describe('backend-express-template routes', () => {
     //   .send({ email: 'test@jenna.com', password: '12345' });
     // expect(response.status).toEqual(200);
   });
+
+  it('POST, 500 error with email that already exists', async () => {
+    const res = await request(app).post('/api/v1/users').send({
+      email: 'test@cutie.com',
+    });
+    expect(res.status).toBe(500);
+  });
   afterAll(() => {
     pool.end();
   });
