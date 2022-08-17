@@ -120,6 +120,16 @@ describe('backend-express-template routes', () => {
       ],
     });
   });
+
+  it('POST /api/v1/restaurants/:restId/reviews allows authenticated user to post new review', async () => {
+    const [agent] = await registerAndLogin();
+    const res = await agent.post('/api/v1/restaurants/1/reviews').send({
+      post: 'The staff was nice but the food was only so so.',
+      user_id: expect.any(String),
+      restaurant_id: expect.any(String),
+    });
+    expect(res.status).toBe(200);
+  });
   afterAll(() => {
     pool.end();
   });
