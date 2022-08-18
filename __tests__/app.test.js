@@ -130,6 +130,19 @@ describe('backend-express-template routes', () => {
     });
     expect(res.status).toBe(200);
   });
+
+  it.only('DELETE/:id allows user/admin to delete review', async () => {
+    const [agent] = await registerAndLogin({ email: 'admin@example.com' });
+    const res = await agent.delete('/api/v1/reviews/1');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '1',
+      post: 'Amazing place to get a drink and vibe with friends',
+      user_id: '1',
+      restaurant_id: '1',
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
