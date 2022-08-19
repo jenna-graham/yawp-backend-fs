@@ -131,7 +131,7 @@ describe('backend-express-template routes', () => {
     expect(res.status).toBe(200);
   });
 
-  it.only('DELETE/:id allows user/admin to delete review', async () => {
+  it('DELETE/:id allows user/admin to delete review', async () => {
     const [agent] = await registerAndLogin({ email: 'admin@example.com' });
     const res = await agent.delete('/api/v1/reviews/1');
     expect(res.status).toBe(200);
